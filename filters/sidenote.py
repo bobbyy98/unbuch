@@ -36,24 +36,28 @@ def latex(string):
 
 
 def sidenote_html(key, value):
-    """Replace `Note` token with html code and incremnt counter."""
+    """Replace `Note` token with html code and increment counter."""
 
     if key == 'Note':
         contents = value[0]['c']
+
         pre = '<span>'
         post = '</span></span>'
 
         if contents[0]['c'] == '{-}':
             pre += '<span class="marginnote">'
-            return [html(pre)] + contents[1:][1:] + [html(post)]
+            return [html(pre)] + contents[2:] + [html(post)]
 
         global sidenote_count
+
         pre += ('<label for="sn-%d" class="margin-toggle sidenote-number"></label>'
                 % sidenote_count)
         pre += ('<input type="checkbox" id="sn-%d" class="margin-toggle" />'
                 % sidenote_count)
         pre += '<span class="sidenote">'
+
         sidenote_count += 1
+
         return  [html(pre)] + contents + [html(post)]
 
 
@@ -62,11 +66,10 @@ def sidenote_latex(key, value):
 
     Labeled sidenotes become footnotes and are automatically handled by the
     Tufte latex package."""
-
     if key == 'Note':
-        contents = value[0]['c']
-        if contents[0]['c'] == '{-}':
-            return [latex('\\marginnote{')] + contents[1:][1:] + [latex('}')]
+        first_substring = value[0]['c'][0]['c']
+        if first_substring == '{-}':
+            return [latex('\\marginnote{')] + value[0]['c'][2:] + [latex('}')]
 
 
 #pylint: disable=unused-argument

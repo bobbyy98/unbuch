@@ -1,37 +1,52 @@
-/* 
- * Stylesheet for environments created by numenvs.py filter.
- */ 
+/*
+* Stylesheet for environments created by numenvs.py filter.
+*/
 
 .numenv {
-  font-size:1.4rem;
-  width:60%;
+  font-size: 1.4rem;
+  width: 60%;
   margin-top: 1.4rem;
 }
 
-.numenv ul, .numenv ol {
-  width:90%;
+.numenv ul,
+.numenv ol {
+  width: 90%;
+}
+
+.numenv p,
+.numenv footer,
+.numenv pre,
+.numenv table {
+  width: 100%;
 }
 
 .numenv p {
-  display:inline;
-  font-style:italic;
+  /* display: inline; */
+  font-style: normal;
+}
+/* only the first p in .numenv should have display: inline */
+.numenv p:first-of-type {
+  display: inline;
 }
 
-.numenv p em {
-  font-style:normal;
+/* .numenv.Definition p {
+  font-style: italic;
 }
+
+.numenv.Definition p em {
+  font-style: normal;
+} */
 
 .numenv .title {
-  font-weight:bold;
-  margin-right:10px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .numenv.EmphBox {
-
-  background-color: #FDF6E3;
+  background-color: #fdf6e3;
   font-style: italic;
   padding: 10px 50px;
-  width:50%;
+  width: 50%;
 }
 
 .numenv.EmphBox .title {
@@ -40,22 +55,23 @@
 
 .numenv.Proof {
   border-left: 0.3rem solid #eee;
-  padding-left:2%;
-  width:58%;
+  padding-left: 2%;
+  width: 58%;
 }
 
 .numenv.Proof p {
-  font-style:normal;
+  font-style: normal;
 }
 
 .numenv.Proof .title {
-  font-weight:normal;
-  font-style:italic;
+  font-weight: normal;
+  font-style: italic;
   border: 0px;
   padding: 0px;
 }
 
-.numenv.fullwidth, .numenv.fullwidth table {
+.numenv.fullwidth,
+.numenv.fullwidth table {
   width: 100%;
 }
 
@@ -76,13 +92,13 @@
 }
 
 .numenv.Algorithm {
-  padding: 5px;
+  padding: 1.2em 0.8em 0.5em 0.8em;
   border: 2px solid #ddd;
-  border-top-left-radius: 10px;
+  border-radius: 10px;
 }
 
 .numenv.Algorithm .title {
-  font-family:monospace;
+  /* font-family:monospace; */
 }
 
 .numenv .title {

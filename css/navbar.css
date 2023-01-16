@@ -17,7 +17,6 @@
 }
 
 #collapsiblemenu .collapsible {
-  color: white;
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -29,7 +28,7 @@
 }
 
 #collapsiblemenu .active {
-  background-color: #f1f1f1;
+  background-color: var(--color-bg-menu);
 }
 
 
@@ -40,20 +39,20 @@
 }
 
 #collapsiblemenu .content {
-  margin-left:-20px;
-  padding: 0 18px;
+  /* margin-left:-20px; */
+  padding: 15px 20px 28px 20px;
   display: none;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: var(--color-bg-menu);
   border-bottom-right-radius: 25px;
 }
 
 #collapsiblemenu .shortthickbar {
-  width: 35px;
-  height: 5px;
-  background-color: #333;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-menu-bars);
   margin: 6px 0;
-  border-radius:3px;
+  border-radius: 5px;
 }
 
 #collapsiblemenu ul > li > ul {

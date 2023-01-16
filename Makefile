@@ -4,6 +4,11 @@ booksubtitle = Book subtitle
 bookauthors = Author 1, Author 2
 bookfilename = book
 
+# Create publish/assets and publish/pdf directories if they don't exist
+$(shell mkdir -p publish/assets)
+$(shell mkdir -p publish/fonts)
+$(shell mkdir -p publish/pdf)
+
 # Add all sources that need to compile to some html page
 SOURCES := sources/index.md \
            sources/chapter1.md \
@@ -14,6 +19,9 @@ SOURCES := sources/index.md \
 CHAPTERS := sources/chapter1.md \
             sources/chapter2.md \
             sources/chapter3.md \
+
+# CHAPTERS = everything except index.md and references.md
+# CHAPTERS := $(filter-out sources/index.md,$(filter-out sources/references.md,$(SOURCES)))
 
 
 ################################################################################
@@ -27,7 +35,7 @@ STYLES := css/tufte.css \
           css/frontpage.css \
 
 # Collect assets to be copied for html version.
-WEBASSETS := $(wildcard assets/*.svg assets/*.jpg assets/*.png)
+WEBASSETS := $(wildcard assets/*.svg assets/*.jpg assets/*.png fonts/*)
 
 # Create targets for each web asset.
 WEBTARGETS = $(patsubst %,publish/%,$(WEBASSETS))
@@ -45,8 +53,23 @@ html: $(WEBTARGETS) $(HTMLTARGETS) publish/index.html publish/style.css
 
 pdf: publish/pdf/$(bookfilename).pdf $(PDFTARGETS)
 
+
+# Rule to watch for changes and recompile HTML whenever changes are made.
+.PHONY: watch
+watch:
+	rerun "make html";
+
+# Rule to clean up all generated files, which delete the publish directory.
+.PHONY: clean
+clean:
+	rm -rf publish
+
 publish/assets/%: assets/%
 	cp $< $@;
+
+# Recursively copy all folders and files from fonts to publish/fonts
+publish/fonts/%: fonts/%
+	cp -r $< $@;
 
 publish/style.css: $(STYLES)
 	cat $(STYLES) > publish/style.css;
@@ -114,8 +137,8 @@ publish/pdf/%.pdf: sources/%.md templates/book.tex Makefile $(FILTERS) reference
     --variable lastupdate="`date -r $< +%Y-%m-%d`" \
     --template templates/book.tex \
     --output tmp_$*.tex; \
-    pdflatex tmp_$*.tex; \
-    pdflatex tmp_$*.tex; \
+    pdflatex -interaction nonstopmode tmp_$*.tex; \
+    pdflatex -interaction nonstopmode tmp_$*.tex; \
     mv tmp_$*.pdf $@; \
     rm tmp_$*.* ; \
 
@@ -150,8 +173,8 @@ publish/pdf/$(bookfilename).pdf: $(CHAPTERS) templates/book.tex templates/refere
     --output publish/pdf/$(bookfilename).tex \
     $(foreach chapter,$(CHAPTERS),tmp-$(notdir $(chapter))) templates/references.md; \
     $(foreach chapter,$(CHAPTERS),rm tmp-$(notdir $(chapter));) \
-    pdflatex publish/pdf/$(bookfilename).tex; \
-    pdflatex publish/pdf/$(bookfilename).tex; \
+    pdflatex -interaction nonstopmode publish/pdf/$(bookfilename).tex; \
+    pdflatex -interaction nonstopmode publish/pdf/$(bookfilename).tex; \
     mv $(bookfilename).pdf publish/pdf; \
     rm $(bookfilename).* ; \
     rm publish/pdf/$(bookfilename).tex

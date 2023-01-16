@@ -12,6 +12,12 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{enumitem}
+
+\setlength{\parskip}{2mm}
+\setlist[itemize]{itemsep=0.5mm,topsep=0mm}
+\setlist[enumerate]{itemsep=0.5mm,topsep=0mm}
+
 \usepackage{boxedminipage}
 \usepackage{microtype}
 \usepackage{hyperref}
@@ -19,17 +25,56 @@
 \usepackage{marginfix}
 \usepackage[morefloats=100]{morefloats}
 
+\theoremstyle{definition}
+\newtheorem{Definition}{Definition}[chapter]
+\newtheorem{Exercise}{Exercise}[chapter]
 
-\newtheorem{Definition}{Definition}
-\newtheorem{Theorem}{Theorem}
-\newtheorem{Lemma}{Lemma}
-\newtheorem{Exercise}{Exercise}
-\newtheorem{Fact}{Fact}
-\newtheorem{Proposition}{Proposition}
-\newtheorem{Assumption}{Assumption}
-\newtheorem*{Example}{Example}
-\newenvironment{Algorithm}{\begin{center}\begin{boxedminipage}{0.92\textwidth}}{\end{boxedminipage}\end{center}}
-\newenvironment{Proof}{\begin{proof}}{\end{proof}}
+\newtheorem{Theorem}{Theorem}[chapter]
+\newtheorem{Lemma}{Lemma}[Theorem]
+
+\newtheorem{Fact}{Fact}[chapter]
+\newtheorem{Proposition}{Proposition}[chapter]
+\newtheorem{Assumption}{Assumption}[chapter]
+\newtheorem{Example}{Example}[chapter]
+\newtheorem{Algorithm}{Algorithm}[chapter]
+% \newenvironment{Algorithm}{\begin{center}\begin{boxedminipage}{0.92\textwidth}}{\end{boxedminipage}\end{center}}
+% \newenvironment{Proof}{\begin{proof}}{\end{proof}}
+
+\newtheoremstyle{proofstyle}
+  {\topsep}   % ABOVESPACE
+  {\topsep}   % BELOWSPACE
+  {}          % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\itshape}  % HEADFONT
+  {.}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+
+\theoremstyle{proofstyle}
+\newtheorem{Proof}{Proof}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\newmdenv[
+  roundcorner=5pt,
+  linewidth=0pt,
+  topline=false,
+  bottomline=false,
+  leftline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+  % innerleftmargin=5pt,
+  % innerrightmargin=5pt,
+  innerbottommargin=15pt,
+  % leftmargin=0pt,
+  % rightmargin=0pt,
+  backgroundcolor=black!5,
+]{algorithmBox}
+
+
+\newenvironment{AlgorithmShaded}{\begin{algorithmBox}\begin{Algorithm}}{\end{Algorithm}\end{algorithmBox}}
+
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -61,7 +106,21 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+\titleclass{\subsubsection}{straight}
+\titleformat{\subsubsection}%
+  [hang]% shape
+  {\normalfont\large\itshape}% format applied to label+text
+  {\thesubsubsection}% label
+  {1em}% horizontal separation between label and title body
+  {}% before the title body
+  []% after the title body
+
 \input{templates/shared-macros}
+
+% Enable numbering for Part, Chapter (0), Section (1), Subsection (2), Subsubsection (3), Paragraph (4), Subparagraph (5)
+\setcounter{secnumdepth}{2}
+% Show more in depth in table of content
+\setcounter{tocdepth}{2}
 
 $if(book-layout)$
 
@@ -73,13 +132,13 @@ $if(book-layout)$
 % chapter format
 \titleformat{\chapter}
   {\huge\rmfamily\itshape} % format applied to label+text
-  {\thechapter} % label
+  {} % label
   {0pt} % horizontal separation between label and title body
   {\ifshowchapternumber
    \textit{\textbf{\thechapter}}\linebreak\noindent
    \else
    \fi
-   \setcounter{chapter}{\thechapter+1} }% before the title body
+   \setcounter{chapter}{\thechapter} }% before the title body
   []% after the title body
 
 \hypersetup{
@@ -93,9 +152,35 @@ $if(book-layout)$
 \title{$booktitle$}
 \author{$bookauthors$}
 
-\setcounter{tocdepth}{1}
+% Enable numbering for Part, Chapter (0), Section (1), Subsection (2), Subsubsection (3), Paragraph (4), Subparagraph (5)
+\setcounter{secnumdepth}{2}
+% Show more in depth in table of content
+\setcounter{tocdepth}{2}
 
 \newif\ifshowchapternumber
+
+
+%%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
+\makeatletter
+\renewcommand{\maketitlepage}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+
+{\fontsize{24}{24}\selectfont\textit{\@author}\par}
+
+\vspace{1.75in}{\fontsize{36}{54}\selectfont\@title\par}
+
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{\@date}}\par}
+
+\vfill{\fontsize{14}{14}\selectfont\textit{\@publisher}\par}
+
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
+
+\newcommand{\theedition}{First Edition}
+\newcommand{\thepublisher}{Stanford University}
 
 \begin{document}
 
@@ -107,27 +192,52 @@ $if(book-layout)$
 
 \begin{fullwidth}
 
-~\vspace{4cm}
+\setlength{\parindent}{0pt}
 
-\noindent{\Huge\tt\uppercase{$booktitle$}}
+
+{\ }
+
+\vspace{1.75in}
+
+{\fontsize{36}{54}\selectfont{$booktitle$}}
 
 \vspace{1cm}
-
 \noindent{\huge\tt $booksubtitle$}
 
-\vspace{3cm}
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{\theedition}}}
 
-\noindent{\huge\it $bookauthors$}
+\vfill
+
+{\fontsize{24}{24}\selectfont\textit{$bookauthors$}}
+
+\vspace{0.5in}
+
+{\fontsize{14}{14}\selectfont\textit{\thepublisher}}
+
+% ~\vspace{4cm}
+
+% \noindent{\Huge\tt\uppercase{$booktitle$}}
+
+% \vspace{1cm}
+
+% \noindent{\huge\tt $booksubtitle$}
+
+% \vspace{3cm}
+
+% \noindent{\huge\it $bookauthors$}
 
 \pagebreak
 
 \thispagestyle{empty}
 
-\noindent Created: $lastupdate$
+\noindent Last updated: $lastupdate$
 
 \end{fullwidth}
 
-\tableofcontents
+{
+  \setlength{\parskip}{0pt}
+  \tableofcontents
+  }
 
 \mainmatter
 
@@ -146,6 +256,9 @@ $endif$
 
 $if(chapter-layout)$
 
+% Set chapter counter to $chapter-number$
+\setcounter{chapter}{$chapter-number$}
+
 \hypersetup{
   colorlinks,
   linkcolor = darkblue,
@@ -154,7 +267,8 @@ $if(chapter-layout)$
   pdfauthor = {$bookauthors$}
 }
 
-\title{$booktitle$ - $lastupdate$}
+% \title{$booktitle$ - $lastupdate$}
+\title{}
 \author{$bookauthors$}
 
 \begin{document}

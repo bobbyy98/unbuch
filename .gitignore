@@ -1,0 +1,5 @@
+.DS_Store
+.vscode
+publish
+*.log
+node_modules
