@@ -9,7 +9,7 @@
     "build": "make -j8",
     "build-html": "make -j8 html",
     "build-pdf": "make -j8 pdf",
-    "watch": "open publish/index.html && make -j8 watch",
+    "watch": "reload -b publish/index.html -p 8080 -d publish & make -j8 watch",
     "format": "prettier --write \"**/*.{js,html,css,md}\""
   },
   "keywords": [],
@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "gh-pages": "^4.0.0",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.3",
+    "reload": "^3.2.1"
   }
 }
