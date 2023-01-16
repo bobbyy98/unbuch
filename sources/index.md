@@ -1,5 +1,5 @@
---- 
-title: Book title 
+---
+title: Book title
 subtitle: Book subtitle
 author: Author
 toc: false

@@ -6,12 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "make && gh-pages -d publish -o github",
-    "watch": "open publish/index.html && make watch"
+    "build": "make -j8",
+    "build-html": "make -j8 html",
+    "build-pdf": "make -j8 pdf",
+    "watch": "open publish/index.html && make -j8 watch",
+    "format": "prettier --write \"**/*.{js,html,css,md}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "prettier": "^2.8.3"
   }
 }

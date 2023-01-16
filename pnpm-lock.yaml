@@ -2,9 +2,11 @@ lockfileVersion: 5.4
 
 specifiers:
   gh-pages: ^4.0.0
+  prettier: ^2.8.3
 
 devDependencies:
   gh-pages: 4.0.0
+  prettier: 2.8.3
 
 packages:
 
@@ -245,6 +247,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
+    dev: true
+
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /semver/6.3.0:

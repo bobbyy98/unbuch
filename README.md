@@ -4,16 +4,16 @@ A simple pandoc setup to compile a book from markdown sources into html pages an
 
 Features:
 
-* Tufte-inspired layout with sidenotes
-* Latex formulas via katex plugin
-* Custom Environments
-* Cross references
-* HTML pages, individual PDF chapters, PDF book
+- Tufte-inspired layout with sidenotes
+- Latex formulas via katex plugin
+- Custom Environments
+- Cross references
+- HTML pages, individual PDF chapters, PDF book
 
 ## Examples of major projects in Unbuch
 
-* [Patterns, Predictions, and Actions](https://mlstory.org)
-* [Fairness and Machine Learning](https://fairmlbook.org)
+- [Patterns, Predictions, and Actions](https://mlstory.org)
+- [Fairness and Machine Learning](https://fairmlbook.org)
 
 ## Getting started
 
@@ -21,9 +21,11 @@ Features:
 2. Make sure you have python 3.5+ installed with [pandocfilters](https://github.com/jgm/pandocfilters) package
 3. Clone the repository
 4. Customize your book by setting up variables in `Makefile`.
-5. Type `make` to build both pdf and html files.
-  - To build html only, type `make html`.
-  - To build pdf only, type `make pdf`.
+5. Use `pnpm build` to build both pdf and html files.
+
+- To build html only, type `make html`.
+- To build pdf only, type `make pdf`.
+
 6. To watch for changes and automatically recompile, use `make watch` or `pnpm watch`
 7. To deploy to GitHub pages, use `pnpm run deploy`
 
@@ -31,27 +33,27 @@ Find the compiled results in `publish/` directory.
 
 ## Dependencies
 
-- `pandoc` 2.14 (**strict: must be version 2.14**)
+- `pandoc` 2.14 (Note: v2.19.2 seems to work fine)
 - `python` 3.5 or higher with `pandocfilters` installed
 
 Note: Every new release of `pandoc` since version 2.10 has broken the compile process due to changes in the way that pandoc handles citations. Getting things to run with a different version of `pandoc` is certainly possible, but may require changes, primarily to the latex template located at `templates/book.tex`. The issue is typically with the latex environments related to `cslreferences`. Copy and paste from the latex template corresponding to your pandoc version as is necessary.
 
 ## Special files and folders
 
-* `assets` -- Put all files linked to from the sources here
-* `css` -- All css files. NO NEED TO EDIT.
-* `filters` -- Custom pandoc filters. NO NEED TO EDIT.
-* `sources` -- This is where the source markdown files live. Go here to edit.
-* `templates` -- Pandoc template files. NO NEED TO EDIT.
-* `publish` -- Contains compiled pages and pdfs ready for publishing. DO NOT EDIT.
+- `assets` -- Put all files linked to from the sources here
+- `css` -- All css files. NO NEED TO EDIT.
+- `filters` -- Custom pandoc filters. NO NEED TO EDIT.
+- `sources` -- This is where the source markdown files live. Go here to edit.
+- `templates` -- Pandoc template files. NO NEED TO EDIT.
+- `publish` -- Contains compiled pages and pdfs ready for publishing. DO NOT EDIT.
 
 ## Credits
 
 The setup is based on:
 
-* [tufte-pandoc-css](https://github.com/jez/tufte-pandoc-css)
-* [tufte-css](https://github.com/edwardtufte/tufte-css)
-* [pandoc-sidenote](https://github.com/jez/pandoc-sidenote)
+- [tufte-pandoc-css](https://github.com/jez/tufte-pandoc-css)
+- [tufte-css](https://github.com/edwardtufte/tufte-css)
+- [pandoc-sidenote](https://github.com/jez/pandoc-sidenote)
 
 ## Current issues
 
@@ -71,15 +73,14 @@ works. Below is additional documentation.
 
 ## Compiling
 
-* `make` to compile all sources into `publish/` directory. This will compile
-all chapters as html and pdf, as well as the whole book as pdf.
+- `make` to compile all sources into `publish/` directory. This will compile
+  all chapters as html and pdf, as well as the whole book as pdf.
 
-* `make -j8` to compile in parallel.
+- `make -j8` to compile in parallel.
 
-* `make publish/pdf/chaptername.pdf` to compile individual pdf chapter
+- `make publish/pdf/chaptername.pdf` to compile individual pdf chapter
 
-* `make publish/chaptername.html` to compile individual html name
-
+- `make publish/chaptername.html` to compile individual html name
 
 ## Side notes and margin notes
 

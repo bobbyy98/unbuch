@@ -12,8 +12,9 @@ Below are several features available with the Unbuch setup. Unbuch uses the `pan
 To create a side note, use this syntax:[^sidenote1]
 
 [^sidenote1]:
-  Aenean id risus at nibh fermentum suscipit vel
-  risus. Fusce ornare, ante eget placerat congue.
+
+Aenean id risus at nibh fermentum suscipit vel
+risus. Fusce ornare, ante eget placerat congue.
 
 ```
 To create a side note, use this syntax:[^sidenote1]
@@ -27,8 +28,9 @@ To create an unnumbered margin notes,
 prefix the text with `{-}`.[^unnumbered-marginnote]
 
 [^unnumbered-marginnote]:
-  {-} Aenean id risus at nibh fermentum suscipit vel
-  risus. Fusce ornare, ante eget placerat congue.
+
+{-} Aenean id risus at nibh fermentum suscipit vel
+risus. Fusce ornare, ante eget placerat congue.
 
 ```
 To create an unnumbered margin notes,
@@ -54,7 +56,6 @@ use of some such macros:
 $$
   \E[X] = \sum_x x\cdot \Pr[X=x]
 $$
-
 
 # Custom environments
 
@@ -82,12 +83,9 @@ Citations go in the margin where they are cited and also appear at the end of th
 
 The syntax for citations is `[@hegel]`. We can also cite multiple papers at once.[@hegel; @nietzsche]. Simply separate multiple citations with a semicolon: `[@hegel; @nietzsche]`. You see that repeated citations are abbreviated to save space.
 
-
 # Figures and images
 
-
-
-Ideally, create images in both SVG and PDF format. Include them by their `.svg` extension. The compiler will figure out to subsitute the pdf version for the pdf compilation. If vector graphics are not available use JPG or PNG. Those are the only other two formats that are supported.
+Ideally, create images in both SVG and PDF format. Include them by their `.svg` extension. The compiler will figure out to substitute the pdf version for the pdf compilation. If vector graphics are not available use JPG or PNG. Those are the only other two formats that are supported.
 
 ![Fancy plot](assets/perceptron.svg)
 
@@ -100,8 +98,9 @@ This image was included as:
 Figures and images can go in the margin.[^logit]
 
 [^logit]:
-  Here's an image in the margin.
-  ![Plot of the logistic loss](assets/logistic_loss.svg)
+
+Here's an image in the margin.
+![Plot of the logistic loss](assets/logistic_loss.svg)
 
 You can specify the width of a figure by appending something like `{width="50%"}`.
 
@@ -117,14 +116,16 @@ This image was included as:
 
 Tables work just as they would in pandoc markdown. Nothing is different here.
 
-   A   B   C
-  --- --- ---
-   1   0   1
-   1   0   0
-   0   0   1
-   1   0   1
+A B C
 
-  : A table of something
+---
+
+1 0 1
+1 0 0
+0 0 1
+1 0 1
+
+: A table of something
 
 # Cross references
 
@@ -149,7 +150,6 @@ $1 + 1 = 2$
 end+Theorem
 
 We saw in Theorem !{thm:deep} that $1+1=2$.
-
 
 This also works with equations.
 

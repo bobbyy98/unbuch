@@ -9,12 +9,11 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
-  --font-family-monospace: "JetBrains Mono", "Menlo", "Consolas", "Liberation Mono",
-    "Courier", monospace;
+  --font-family-monospace: "JetBrains Mono", "Menlo", "Consolas",
+    "Liberation Mono", "Courier", monospace;
   --font-family-body: "Source Serif Pro", "Georgia", "Palatino",
     "Palatino Linotype", "Palatino LT STD", "Book Antiqua", "Georgia", serif;
   --font-family-headings: "Source Serif Pro", "Palatino";
-
 
   /* Light mode */
   /*
@@ -39,7 +38,6 @@
   --color-bg-menu: #080808;
   --color-menu-bars: #e5e5e5;
   --color-text-light: #dcdcdc;
-
 }
 
 html {
@@ -286,7 +284,10 @@ pre {
   line-height: 1.3;
 }
 
-p code, table code, ul code, ol code {
+p code,
+table code,
+ul code,
+ol code {
   padding: 0 0.3rem;
 }
 

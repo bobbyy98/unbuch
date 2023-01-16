@@ -26,23 +26,23 @@ $for(include-before)$
 $include-before$
 $endfor$
 <article>
-<header>
-<h1 class="booktitle">$title$</h1>
-<h2 class="booksubtitle">$subtitle$</h2>
-<h1 class="bookauthor">$author$</h2>
-</header>
+  <header>
+    <h1 class="booktitle">$title$</h1>
+    <h2 class="booksubtitle">$subtitle$</h2>
+    <h2 class="bookauthor">$author$</h2>
+  </header>
 
-<a class="booklink" href="pdf/book.pdf">Full book as PDF</a>
+  <a class="booklink" href="pdf/book.pdf">Full book as PDF</a>
 
-<h1 class="bookcontents">Chapters</h1>
+  <h1 class="bookcontents">Chapters</h1>
 
-<div id="frontpage">
-$body$
-</div>
+  <div id="frontpage">
+    $body$
+  </div>
 
-<div id="lastupdate">
-Last updated: $lastupdate$
-</div>
+  <div id="lastupdate">
+    Last updated: $lastupdate$
+  </div>
 </article>
 $for(include-after)$
 $include-after$

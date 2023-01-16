@@ -3,16 +3,16 @@
  */
 
 #collapsiblemenu {
-  position:fixed;
+  position: fixed;
   left: 0px;
   top: 0px;
-  width:300px;
-  z-index:99;
+  width: 300px;
+  z-index: 99;
 }
 
 @media (max-width: 860px) {
   #collapsiblemenu {
-     display: none;
+    display: none;
   }
 }
 
@@ -24,18 +24,18 @@
   text-align: left;
   outline: none;
   font-size: 15px;
-  background:none;
+  background: none;
 }
 
 #collapsiblemenu .active {
   background-color: var(--color-bg-menu);
 }
 
-
-#collapsiblemenu ul, #collapsiblemenu li {
-  margin-top:0;
-  padding-top:0;
-  width:250px;
+#collapsiblemenu ul,
+#collapsiblemenu li {
+  margin-top: 0;
+  padding-top: 0;
+  width: 250px;
 }
 
 #collapsiblemenu .content {
@@ -56,5 +56,5 @@
 }
 
 #collapsiblemenu ul > li > ul {
-  display:none;
+  display: none;
 }
